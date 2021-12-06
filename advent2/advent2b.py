@@ -1,3 +1,7 @@
+#
+# Day 2: Dive!
+# https://adventofcode.com/2021/day/2
+#
 def calculate(lines: list[str]):
     horizontal = 0
     depth = 0

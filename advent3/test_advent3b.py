@@ -2,9 +2,9 @@ import unittest
 
 from advent3b import calculate
 
-class Test3B(unittest.TestCase):
 
-    def test_o2(self):
+class Test3B(unittest.TestCase):
+    def test_success(self):
         lines = [
             "00100",
             "11110",
@@ -22,5 +22,6 @@ class Test3B(unittest.TestCase):
         result = calculate(lines)
         self.assertEqual(result, 230)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

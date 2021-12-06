@@ -1,5 +1,9 @@
+#
+# Day 3: Binary Diagnostic
+# https://adventofcode.com/2021/day/3
+#
 from collections import defaultdict
-from typing import DefaultDict, List
+from typing import DefaultDict
 
 
 def calculate_rating(lines: list[str], target_most_common: bool) -> str:

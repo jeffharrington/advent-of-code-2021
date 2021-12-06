@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mypy = "*"
-black = "*"
+
 
 [dev-packages]
+mypy = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.9"

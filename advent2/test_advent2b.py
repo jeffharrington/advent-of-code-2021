@@ -2,8 +2,8 @@ import unittest
 
 from advent2b import calculate
 
-class Test2b(unittest.TestCase):
 
+class Test2b(unittest.TestCase):
     def test_success(self):
         lines = [
             "forward 5",
@@ -16,5 +16,6 @@ class Test2b(unittest.TestCase):
         result = calculate(lines)
         self.assertEqual(result, 900)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

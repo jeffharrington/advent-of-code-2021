@@ -1,3 +1,7 @@
+#
+# Day 1: Sonar Sweep
+# https://adventofcode.com/2021/day/1
+#
 def calculate(lines: list[str]):
     num_depth_increases = 0
     curr_depth = int(lines[0])
