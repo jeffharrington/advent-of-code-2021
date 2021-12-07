@@ -10,7 +10,6 @@ def calculate(lines: list[str]):
     position_sums: DefaultDict[int, int] = defaultdict(int)
     gamma_rate: DefaultDict[int, str] = defaultdict(str)
     epsilon_rate: DefaultDict[int, str] = defaultdict(str)
-
     num_lines = 0
     for line in lines:
         for i, bit in enumerate(line.rstrip()):
@@ -22,15 +21,15 @@ def calculate(lines: list[str]):
                 gamma_rate[i] = "0"
                 epsilon_rate[i] = "1"
         num_lines += 1
-
+    # Calc gamma rate
     gamma_rate_str = "".join(gamma_rate.values())
     gamma_rate_int = int(gamma_rate_str, 2)
     print(f"Gamma Rate: {gamma_rate_str} ({gamma_rate_int})")
-
+    # Calc epsilon rate
     epsilon_rate_str = "".join(epsilon_rate.values())
     epsilon_rate_int = int(epsilon_rate_str, 2)
     print(f"Epsilon Rate: {epsilon_rate_str} ({epsilon_rate_int})")
-
+    # Calc result
     result = gamma_rate_int * epsilon_rate_int
     print(f"Result: {result}")
     return result

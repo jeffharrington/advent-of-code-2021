@@ -9,7 +9,6 @@ def calculate(lines: list[str]) -> int:
     prev_depth_set = [int(line) for line in lines[0:SET_SIZE]]
     prev_set_sum = sum(prev_depth_set)
     print(f"{prev_depth_set} - {prev_set_sum} - (N/A - no previous measurement)")
-
     num_depth_increases = 0
     i = 1  # Start on second set
     while i < len(lines):
@@ -26,7 +25,6 @@ def calculate(lines: list[str]) -> int:
         prev_depth_set = curr_depth_set
         prev_set_sum = curr_set_sum
         i += 1
-
     print(f"The depth increased {num_depth_increases} times.")
     return num_depth_increases
 

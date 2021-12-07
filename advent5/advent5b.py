@@ -6,25 +6,22 @@ import re
 from collections import defaultdict, namedtuple
 from typing import List, Tuple, DefaultDict
 
-LINE_PATTERN = r"^(\d.*),(\d.*) -> (\d.*),(\d.*).*$"
-
 Point = namedtuple("Point", ["x", "y"])
 
 
 def horizontal_locations_between_points(point1: Point, point2: Point) -> List[Point]:
+    # Return list of points (in horizontal line) from point1 to point2.
     points: List[Point] = []
+    x_moving_forward = (point1.x < point2.x)
     curr_x = point1.x
-    while curr_x < point2.x:
+    while curr_x != point2.x:
         points.append(Point(x=curr_x, y=point1.y))
-        curr_x += 1
-    curr_x = point1.x
-    while curr_x > point2.x:
-        points.append(Point(x=curr_x, y=point1.y))
-        curr_x -= 1
+        curr_x += 1 if x_moving_forward else -1
     points.append(point2)
     return points
 
 def vertical_locations_between_points(point1: Point, point2: Point) -> List[Point]:
+    # Return list of points (in vertical line) from point1 to point2.
     points: List[Point] = []
     y_moving_forward = (point1.y < point2.y)
     curr_y = point1.y
@@ -35,6 +32,7 @@ def vertical_locations_between_points(point1: Point, point2: Point) -> List[Poin
     return points
 
 def diagonal_locations_between_points(point1: Point, point2: Point) -> List[Point]:
+    # Return list of points (in diagonal line) from point1 to point2.
     points: List[Point] = []
     x_moving_forward = (point1.x < point2.x)
     y_moving_forward = (point1.y < point2.y)
@@ -48,6 +46,7 @@ def diagonal_locations_between_points(point1: Point, point2: Point) -> List[Poin
     return points
 
 def locations_between_two_points(point1: Point, point2: Point) -> List[Point]:
+    # Return list of points from point1 to point2 (in any direction)
     points: List[Point] = []
     if point1.y == point2.y:
         # Moving horizontally
@@ -62,6 +61,8 @@ def locations_between_two_points(point1: Point, point2: Point) -> List[Point]:
 
 
 def parse_line(line: str) -> Tuple[Point, Point]:
+    # Parse the line of coordinates from our input file.
+    LINE_PATTERN = r"^(\d.*),(\d.*) -> (\d.*),(\d.*).*$"
     match = re.match(LINE_PATTERN, line)
     if not match:
         raise ValueError("No match on line:", line)
@@ -71,14 +72,16 @@ def parse_line(line: str) -> Tuple[Point, Point]:
 
 
 def calculate(lines: list[str]):
-    ocean_map: DefaultDict[Point, int] = defaultdict(int)
+    # Graph the points and count the number of dangerous points.
+    DANGEROUS_COUNT = 2
+    ocean_graph: DefaultDict[Point, int] = defaultdict(int)
     dangerous_points = set()
     for line in lines:
         point_pair = parse_line(line)
         locations = locations_between_two_points(point_pair[0], point_pair[1])
         for location in locations:
-            ocean_map[location] += 1
-            if ocean_map[location] >= 2:
+            ocean_graph[location] += 1
+            if ocean_graph[location] >= DANGEROUS_COUNT:
                 dangerous_points.add(location)
     print("Dangerous Points:", len(dangerous_points))
     return len(dangerous_points)
