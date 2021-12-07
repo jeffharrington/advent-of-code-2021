@@ -32,4 +32,4 @@ if __name__ == "__main__":
         lines = f.readlines()
     DAYS = 80
     num_fish = calculate(lines=lines, days=DAYS)
-    print(f"There are {num_fish} after {DAYS} days")
+    print(f"There are {num_fish} fish after {DAYS} days")
