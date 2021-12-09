@@ -27,17 +27,18 @@ def is_low_point(heightmap, i, j) -> bool:
     return True
 
 
-def get_basin_values(heightmap, i, j, basin_values: Set[int]) -> Set[Tuple[int, int]]:
+def get_basin_values(heightmap, i, j, basin_values: Set[Tuple]) -> Set[Tuple]:
     height = len(heightmap)
     width = len(heightmap[0])
 
     if i >= height or j >= width:  # Reached edge
         return basin_values
 
-    if (i, j) in basin_values:
+    if (i, j) in basin_values:  # Already added this location
         return basin_values
 
     basin_values.add((i, j))
+
     if heightmap[i][j] == 9:
         return basin_values
     if i > 0:
@@ -82,7 +83,7 @@ def calculate(lines: list[str]) -> int:
     for low_point in low_points:
         basin_values = get_basin_values(heightmap, low_point[0], low_point[1], set())
         basin_lengths.append(len(basin_values))
-    top_basin_lengths = sorted(basin_lengths)[-3:] # Top 3 largest
+    top_basin_lengths = sorted(basin_lengths)[-3:]  # Top 3 largest
     result = top_basin_lengths[0] * top_basin_lengths[1] * top_basin_lengths[2]
     return result
 
