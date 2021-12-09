@@ -27,7 +27,7 @@ def parse_line(line: str) -> Tuple[List[set], List[set]]:
 def decipher_signal_patterns(signal_patterns: List[set]) -> Dict[str, int]:
     patterns: Dict[int, set] = defaultdict(set)
     i = 0
-    while len(patterns) < 10:  # Don't stop until we find all the numbers
+    while len(patterns) < 10:  # Don't stop until we find all the patterns
         pattern = signal_patterns[i % len(signal_patterns)]
         i += 1
         if len(pattern) == NUM_LENGTHS[1]:
