@@ -1,6 +1,6 @@
 import unittest
 
-from advent10a import calculate, parse_line
+from advent10b import calculate, parse_line
 
 
 class Test10A(unittest.TestCase):
@@ -53,7 +53,7 @@ class Test10A(unittest.TestCase):
     def test_calculate(self):
         result = calculate(lines=self.lines)
         print("Result:", result)
-        self.assertEqual(result, 26397)
+        self.assertEqual(result, 288957)
 
 
 if __name__ == "__main__":

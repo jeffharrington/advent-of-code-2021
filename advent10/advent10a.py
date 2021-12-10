@@ -4,11 +4,6 @@
 #
 from typing import List
 
-
-def parse_line(line: str) -> List[str]:
-    return [c for c in line.rstrip()]
-
-
 CHAR_MAP = {
     ")": "(",
     "]": "[",
@@ -22,6 +17,10 @@ CHAR_SCORES = {
     "}": 1197,
     ">": 25137,
 }
+
+
+def parse_line(line: str) -> List[str]:
+    return [c for c in line.rstrip()]
 
 
 def calculate(lines: list[str]) -> int:
@@ -44,7 +43,6 @@ def calculate(lines: list[str]) -> int:
     score = 0
     for c in illegal_chars:
         score += CHAR_SCORES[c]
-
     return score
 
 
