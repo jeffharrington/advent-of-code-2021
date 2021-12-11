@@ -6,10 +6,7 @@ from typing import List
 
 
 def parse_lines(lines: List[str]) -> List[List[int]]:
-    matrix = list()
-    for line in lines:
-        matrix.append([int(char) for char in line.rstrip()])
-    return matrix
+    return [list(map(int, line.rstrip())) for line in lines]
 
 
 def print_matrix(matrix: List[List[int]], step: int) -> None:
